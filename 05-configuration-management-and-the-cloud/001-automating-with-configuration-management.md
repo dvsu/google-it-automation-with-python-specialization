@@ -24,11 +24,9 @@
 
 ```puppet
 class sudo {
-    
-    package { 'sudo':
-        ensure => present,
-    }
-
+  package { 'sudo':
+    ensure => present,
+  }
 }
 ```
 
@@ -44,12 +42,10 @@ This keyword is used to declare a package resource.
 
 ```puppet
 class sysctl {
-
-    # Make sure the directory exists, some distros don't have it
-    file { '/etc/sysctl.d':
-        ensure => directory,
-    }
-
+  # Make sure the directory exists, some  distros don't have it
+  file { '/etc/sysctl.d':
+    ensure => directory,
+  }
 }
 ```
 
@@ -70,13 +66,11 @@ Make sure `/etc/sysctl.d` exists and it is a `directory`
 
 ```puppet
 class timezone {
-
-    file { '/etc/timezone':
-        ensure => file,
-        content => "UTC\n",
-        replace => true,
-    }
-
+  file { '/etc/timezone':
+    ensure => file,
+    content => "UTC\n",
+    replace => true,
+  }
 }
 ```
 
@@ -96,17 +90,17 @@ When a resource is declared in puppet rules, the desired state of the resource i
 
 ```puppet
 class ntp {
-    package { 'ntp':
-        ensure => latest,
-    }
-    file { '/etc/ntp.conf':
-        source => 'puppet:///modules/ntp/ntp.conf'
-        replace => true,
-    }
-    service { 'ntp':
-        enable => true,
-        ensure => running,
-    }
+  package { 'ntp':
+    ensure => latest,
+  }
+  file { '/etc/ntp.conf':
+    source => 'puppet:///modules/ntp/ntp  conf'
+    replace => true,
+  }
+  service { 'ntp':
+    enable => true,
+    ensure => running,
+  }
 }
 ```
 
@@ -201,13 +195,13 @@ Puppet's DSL includes
 
 ```puppet
 if $facts['is_virtual'] {
-    package { 'smartmontools':
-        ensure => purged,
-    }
+  package { 'smartmontools':
+    ensure => purged,
+  }
 } else {
-    package { 'smartmontools':
-        ensure => installed,
-    }
+  package { 'smartmontools':
+    ensure => installed,
+  }
 }
 ```
 
@@ -229,8 +223,8 @@ if $facts['is_virtual'] {
 
 ```puppet
 file { '/etc/issue':
-    mode => '0644',
-    content => "Internal system \l \n",
+  mode => '0644',
+  content => "Internal system \l \n",
 }
 ```
 
@@ -250,8 +244,8 @@ The workaround is to use `onlyif` attribute.
 
 ```puppet
 exec { 'move example file':
-    command => 'mv /home/user/example.txt /home/user/Desktop',
-    onlyif => 'test -e /home/user/example.txt',
+  command => 'mv /home/user/example.txt /home/user/Desktop',
+  onlyif => 'test -e /home/user/example.txt',
 }
 ```
 

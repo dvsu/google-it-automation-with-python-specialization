@@ -28,7 +28,7 @@ sudo apt install puppet-master
 
 ```puppet
 package { 'htop':
-    ensure => present,
+  ensure => present,
 }
 ```
 
@@ -54,20 +54,20 @@ Example of resource relationships in `ntp.pp`
 
 ```puppet
 class ntp {
-    package { 'ntp':
-        ensure => latest,
-    }
-    file { '/etc/ntp.conf':
-        source => '/home/user/ntp.conf',
-        replace => true,
-        require => Package['ntp'],
-        notify => Service['ntp'],
-    }
-    service { 'ntp':
-        enable => true,
-        ensure => running,
-        require => File['/etc/ntp.conf'],
-    }
+  package { 'ntp':
+    ensure => latest,
+  }
+  file { '/etc/ntp.conf':
+    source => '/home/user/ntp.conf',
+    replace => true,
+    require => Package['ntp'],
+    notify => Service['ntp'],
+  }
+  service { 'ntp':
+    enable => true,
+    ensure => running,
+    require => File['/etc/ntp.conf'],
+  }
 }
 
 include ntp
@@ -198,6 +198,8 @@ What does Puppet syntax dictate we do when referring to another resource attribu
 ---
 
 ## 2.2.1 Puppet Nodes
+
+
 
 ## 2.2.2 Puppet's Certificate Infrastructure
 
