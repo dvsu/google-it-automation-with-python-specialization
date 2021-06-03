@@ -67,7 +67,7 @@ Make sure `/etc/sysctl.d` exists and it is a `directory`
 ```puppet
 class timezone {
   file { '/etc/timezone':
-    ensure => file,
+    ensure  => file,
     content => "UTC\n",
     replace => true,
   }
@@ -94,7 +94,7 @@ class ntp {
     ensure => latest,
   }
   file { '/etc/ntp.conf':
-    source => 'puppet:///modules/ntp/ntp  conf'
+    source  => 'puppet:///modules/ntp/ntp  conf'
     replace => true,
   }
   service { 'ntp':
@@ -137,7 +137,7 @@ class AutoConfig {
     ensure => latest,
   }
   file { 'executable.cfg':
-    source => 'puppet:///modules/executable/Autoconfig/executable.cfg'
+    source  => 'puppet:///modules/executable/Autoconfig/executable.cfg'
     replace => true,
   }
   service { 'executable.exe':
@@ -223,7 +223,7 @@ if $facts['is_virtual'] {
 
 ```puppet
 file { '/etc/issue':
-  mode => '0644',
+  mode    => '0644',
   content => "Internal system \l \n",
 }
 ```
@@ -245,7 +245,7 @@ The workaround is to use `onlyif` attribute.
 ```puppet
 exec { 'move example file':
   command => 'mv /home/user/example.txt /home/user/Desktop',
-  onlyif => 'test -e /home/user/example.txt',
+  onlyif  => 'test -e /home/user/example.txt',
 }
 ```
 
