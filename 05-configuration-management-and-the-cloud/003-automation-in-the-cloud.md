@@ -422,7 +422,6 @@ Nowadays, it is very common to have a hybrid cloud setup, where a few services a
 
 ![Monitoring and alerting services for a web application system](./assets/003/monitoring_and_alerting.PNG)  
 
-
 ***Question***  
 
 What is the difference between automation and orchestration?  

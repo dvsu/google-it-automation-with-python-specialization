@@ -16,6 +16,7 @@ Deploy a virtual machine (VM) as a web server through web UI
     ```shell
     git clone https://www.github.com/google/it-cert-automation-practice.git
     ```
+
 5. There are 2 files in the sample project folders, a Python script to handle the HTTP/S requests and `.service` file to run the service automatically after reboot.
 
     Location of files
