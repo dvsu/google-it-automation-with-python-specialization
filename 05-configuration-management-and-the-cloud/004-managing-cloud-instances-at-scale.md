@@ -304,13 +304,78 @@ If our service has a Service Level Objective (SLO) of four-nines, what is our er
 `( )` .001%  
 `( )` 1%  
 `( )` .1%  
-`(✓)` .01%  
+`(✓)` .01% *(If we have an SLO of 99.99%, that gives us an error budget of .01%)*  
 
 ## 4.2.4 Basic Monitoring in GCP  
 
+To run Linux command in background  
+
+```shell
+{command} &
+```
+
+To bring currently running process to foreground  
+
+```shell
+fg
+```
+
+***Question***  
+
+What type of policy requires us to set up a condition which notifies us when it's triggered?  
+`( )` Login Policy  
+`(✓)` Alerting Policy *(An Alerting Policy specifies the conditions that trigger alerts, and the actions to be taken when these alerts are triggered, like sending an email address notification)*  
+`( )` Security Policy  
+`( )` Bug Reporting Policy  
+
 ## 4.2.5 More Information on Monitoring and Alerting  
 
+[Monitoring 101: Collecting the right data](https://www.datadoghq.com/blog/monitoring-101-collecting-data/)  
+[An Introduction to Metrics, Monitoring, and Alerting](https://www.digitalocean.com/community/tutorials/an-introduction-to-metrics-monitoring-and-alerting)  
+[High Availability (Wikipedia)](https://en.wikipedia.org/wiki/High_availability)  
+[Site Reliability Engineering (SRE) Books](https://sre.google/books/)  
+
 ## 4.2.6 Quiz  
+
+***Question 1***  
+
+What is a Service Level Agreement?  
+`( )` An agreement between the user and developer  
+`(✓)` A strict commitment between a provider and a client *(A service-level agreement is an arrangement between two or more parties, one being the client and the other being service providers)*  
+`( )` An agreement between service providers  
+`( )` A guarantee of service quality  
+
+***Question 2***  
+
+What is the most important aspect of an alert?  
+`(✓)` It must be actionable *(If an alert notification is not actionable, it should not be an alert at all)*  
+`( )` It must require a human to be notified  
+`( )` It must require immediate action  
+`( )` It must precisely describe the cause of the issue  
+
+***Question 3***  
+
+Which part of an HTTP message from a web server is useful for tracking the overall status of the response and can be  monitored and logged?  
+`( )` A triggered alert  
+`( )` The data pushed back to the client  
+`( )` Metrics sent from the server  
+`(✓)` The response code in the server's message *(We can log and monitor these response codes, and even use them to set alert conditions)*  
+
+***Question 4***  
+
+To set up a new alert, we have to configure the _____ that triggers the alert.  
+`(✓)` Condition *(We must define what occurence or metric threshold will serve as a conditional trigger for our alert)*  
+`( )` Metric  
+`( )` Incident  
+`( )` Service Level Objective (SLO)  
+
+***Question 5***  
+
+When we collect metrics from inside a system, this is known as ______ monitoring.  
+`(✓)` White-box *(A white-box monitoring system is one that collects metrics internally, from within the system being monitored)*  
+`( )` Black-box  
+`( )` Network  
+`( )` Log  
 
 ## Troubleshooting and Debugging  
 
@@ -318,10 +383,95 @@ If our service has a Service Level Objective (SLO) of four-nines, what is our er
 
 ## 4.3.1 What to Do When You Can't be Physically There  
 
+***Question***  
+
+Which of the following is a valid method of troubleshooting a cloud service? (select all that apply)  
+`[ ]` Physically inspect the machine's connections  
+`[ ]` Power cycle the hardware  
+`[✓]` Run a test VM in a test environment *(Testing through software is always our best bet in the cloud)*  
+`[✓]` Call the service provider *(Part of the beauty of running services in the Cloud is that you aren't responsible for everything! Most Cloud providers are happy to provide various levels of support)*  
+
 ## 4.3.2 Identifying Where the Failure is Coming from  
+
+When hosting services in the cloud, the typical root cause of problem may be from either:
+
+1. Client side
+2. Provider side
+
+Problems on the provider side tend to be isolated to geographical regions.  
+
+One easy and quick check is to try moving the service to another region. If it works, then the problem may be caused by the provider. Otherwise, it is very likely caused by the client's system.  
+
+***Question***  
+
+When troubleshooting, what is it called when an error or failure occurs, and the service is downgraded to a previous working version?  
+`( )` Reinstall  
+`(✓)` Rollback *(Rollback is the process of restoring a database or program to a previously defined state, usually to recover from an error)*  
+`( )` Restore  
+`( )` Redo  
+
+***Containers***  
+
+> Packaged applications that are shipped together with their libraries and dependencies  
+
+When using containers, the typical architecture is to have a lot of small containers that take care of different parts of the service. This means that the overall system can get really complex and when something breaks, it can be hard to identify. Solving problems in the container world is by having good logs coming in from all of the parts of the system.  
 
 ## 4.3.3 Recovering from Failure  
 
+If you operate a service that stores any kind of data, it's critical that you implement automatic backups, and that you periodically check that those backups are working correctly by performing restores.  
+
+***Question***  
+
+Which of the following are important aspects of disaster recovery? (Select all that apply)  
+`[✓]` Having multiple points of redundancy *(Having several forms of redundancy, and failover reduces the impact when failure happens)*  
+`[✓]` Having a well-documented disaster recovery plan *(In order to get things up and running as quickly as possible, we need to have a detailed plan)*  
+`[✓]` Having automatic backups *(Having automatic backups makes it easier to restore and recover)*  
+`[ ]` Eliminating failure in the first place  
+
 ## 4.3.4 Debugging Problems on the Cloud  
 
+[GCP: Troubleshooting VM Creation](https://cloud.google.com/compute/docs/troubleshooting/troubleshooting-vm-creation)  
+[Microsoft Azure: Azure Virtual Machines Troubleshooting Documentation](https://docs.microsoft.com/en-us/troubleshoot/azure/virtual-machines/welcome-virtual-machines)  
+[AWS: Troubleshoot EC2 Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-troubleshoot.html)  
+
 ## 4.3.5 Quiz  
+
+***Question 1***  
+
+Which of the following are valid strategies for recovery after encountering service failure? (Select all that apply)  
+`[✓]` Switching to a secondary instance *(A quick way to recover is to have a secondary instance of the VM running your service that you can quickly switch to)*  
+`[ ]` Setting up monitoring and alerts  
+`[✓]` Restoring from backup *(As long as you've been keeping frequent backups, restoring a previous VM image will often get you where you need to be)*  
+`[✓]` Performing a rollback to a previous version *(If the problem is related to recent changes or updates, rolling back to a previous working version of the service or supporting software will give the time to investigate further)*  
+
+***Question 2***  
+
+Which of the following concepts provide redundancy? (Select all that apply.)  
+`[✓]` Having a secondary instance of a VM *(If your primary VM instance running your service fails, having a secondary instance running in the background ready to take over can provide instant failover)*  
+`[✓]` Having a secondary Cloud vendor *(Having a secondary Cloud service provider on hand with your data in case of the first provider having large-scale outages can provide redundancy for a worst-case scenario)*  
+`[ ]` Having automatic backups configured  
+`[ ]` Performing a rollback  
+
+***Question 3***  
+
+If you operate a service that stores any kind of data, what are some critical steps to ensure disaster recovery? (Select all that apply)  
+`[✓]` Implement automated backups *(As long as we have viable backup images, we can restore the VM running our service)*  
+`[ ]` Use redundant systems wherever possible  
+`[✓]` Test backups by restoring *(It's important to know that our backup process is working correctly. It would not do to be in a recovery situation and not have backups)*  
+`[ ]` Never delete old backups  
+
+***Question 4***  
+
+What is the correct term for packaged applications that are shipped with all needed libraries and dependencies, and allows the application to run in isolation?  
+`( )` Rollback  
+`( )` Secondary instance  
+`(✓)` Containers *(Containerization ensures that our software runs the same way every time)*  
+`( )` Disk image  
+
+***Question 5***  
+
+Using a large variety of containerized applications can get complicated and messy. What are some important tips for solving problems when using containers? (Select all that apply)  
+`[✓]` Use extensive logging in all parts *(As long as we have the right logs in the right places, we can tell where our problems are)*  
+`[ ]` Reduce the number of containers  
+`[ ]` Reuse container configurations  
+`[✓]` Use test instances *(We should take every opportunity to test and retest that our configuration is working properly)*  
