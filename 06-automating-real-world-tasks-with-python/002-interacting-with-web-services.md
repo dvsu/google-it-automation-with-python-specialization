@@ -5,7 +5,7 @@
 ---
 
 [What is an API Endpoint?](https://rapidapi.com/blog/api-glossary/endpoint/)  
-[JavaScript Object Notation (JSON)](https://www.json.org/json-en.html)    
+[JavaScript Object Notation (JSON)](https://www.json.org/json-en.html)  
 [YAML](https://yaml.org/)  
 [YAML (Wikipedia)](https://en.wikipedia.org/wiki/YAML)  
 [PyYAML Documentation](https://pyyaml.org/wiki/PyYAMLDocumentation)  
@@ -20,7 +20,7 @@
 [HTTP Response Status Codes (MDN)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)  
 [`requests` Response.raise_for_status()](https://docs.python-requests.org/en/master/api/#requests.Response.raise_for_status)  
 [Query String (Wikipedia)](https://en.wikipedia.org/wiki/Query_string)  
-[Request Method Definitions](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3)   
+[Request Method Definitions](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3)  
 [`requests` Library Quickstart](https://docs.python-requests.org/en/master/user/quickstart/)  
 [Django: Python Web Framework](https://www.djangoproject.com/)  
 [Flask: Full Stack Python](https://www.fullstackpython.com/flask.html)  
